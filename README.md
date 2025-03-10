@@ -21,7 +21,7 @@ The game includes a modern UI with **winner animations** (“gold glow”) and a
 ## ⚙️ Installation
 #### 1. Clone the repository
 ```sh
-git clone https://github.com/kristina-mt/tic-tac-toe.git
+git clone https://github.com/kristina-mt/tic_tac_toe_cypress/tree/main
 cd tic-tac-toe
 ```
 #### 2. Install dependencies
