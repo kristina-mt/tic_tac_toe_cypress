@@ -92,5 +92,5 @@ This project is open-source and available under the MIT license.
 ---
 
 ## 💡 Author
-Created by **[Your Name]**. If you have any questions or suggestions, feel free to contribute! 🎉
+Created by Kristina Masiulyte-Tomkiene. If you have any questions or suggestions, feel free to contribute! 🎉
 

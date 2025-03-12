@@ -1,61 +1,30 @@
 :root {
-  /* Spalvų paletė */
+  /* Color palette */
   --primary-color: #646cff;
   --secondary-color: #535bf2;
-  --text-color-light: #213547;
-  --text-color-dark: rgba(255, 255, 255, 0.87);
+  --text-color-light: #e0e0e0;
+  --text-color-dark: #1a1a1a;
+  --bg-dark: #121212;
   --bg-light: #f4f4f4;
-  --bg-dark: #1e1e1e;
   --glass-bg: rgba(255, 255, 255, 0.1);
-  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
   --shadow-light: rgba(255, 255, 255, 0.2);
 
-  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: var(--text-color-dark);
-  background-color: var(--bg-dark);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Bendra išvaizda */
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
   background: var(--bg-dark);
-  color: var(--text-color-dark);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-color-light);
+  transition: background 0.3s ease-in-out;
 }
 
-/* Laimėjusios langelių animacija */
-.winning-square {
-  background-color: gold !important;
-  border: 3px solid orange;
-  animation: glow 1s infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    box-shadow: 0 0 10px gold;
-    transform: scale(1);
-  }
-  to {
-    box-shadow: 0 0 20px gold;
-    transform: scale(1.1);
-  }
-}
-
-/* Tekstas */
 h1 {
   font-size: 3rem;
   font-weight: bold;
@@ -66,56 +35,140 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Mygtukai */
+/* Game Container */
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card styling */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px var(--shadow-dark);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--shadow-light);
+}
+
+/* Board styling */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+  gap: 10px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--shadow-dark);
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color-light);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s;
+}
+
+.square:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.square:active {
+  transform: scale(0.95);
+}
+
+/* Winning squares */
+.winning-square {
+  background: gold !important;
+  color: black !important;
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px gold;
+  }
+  to {
+    box-shadow: 0 0 20px gold;
+  }
+}
+
+/* Buttons */
 button {
   border-radius: 12px;
   border: none;
-  padding: 0.8em 1.6em;
-  font-size: 1em;
-  font-weight: 600;
-  font-family: inherit;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
   cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
   box-shadow: 0 4px 10px var(--shadow-dark);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
+
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 15px var(--shadow-light);
 }
 
-/* Kortelės */
-.card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 10px var(--shadow-dark);
-  max-width: 400px;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px var(--shadow-light);
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px var(--shadow-dark);
 }
 
-/* Šviesus režimas */
+/* Winner text */
+.winner-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: gold;
+  text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+}
+
+/* Dark Mode */
 @media (prefers-color-scheme: light) {
   :root {
-    color: var(--text-color-light);
+    color: var(--text-color-dark);
     background-color: var(--bg-light);
   }
 
   body {
     background: var(--bg-light);
-    color: var(--text-color-light);
+    color: var(--text-color-dark);
   }
 
   .card {
     background: white;
     box-shadow: 0 4px 10px var(--shadow-light);
+  }
+
+  .square {
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .winning-square {
+    background: gold;
+    color: black;
   }
 
   button {
