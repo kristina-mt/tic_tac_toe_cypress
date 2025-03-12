@@ -28,10 +28,8 @@ jobs:
       run: npm run dev &
       env:
         CI: true
-        name: Wait for Rect App to be Ready
-        run: npx wait-on http://localhost:5173
-    - run: npm run cypress:run
-          npx wait-on http://localhost:5173
-          echo "React App is ready"
-    - run: npm run cypress:run
+    - name: Wait for Rect App to be Ready
+      run: npx wait-on http://localhost:5173
+
+    - run: npx cypress run
     
