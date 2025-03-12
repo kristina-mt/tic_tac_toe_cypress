@@ -5,6 +5,7 @@ describe("Tic-Tac-Toe Game", () => {
   
     // UI Rendering Tests
     it("should render the game board with 9 empty squares", () => {
+      cy.get(".board").should("exist");
       cy.get(".square").should("have.length", 9).each(($el) => {
         cy.wrap($el).should("be.empty");
       });
